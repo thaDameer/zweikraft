@@ -21,14 +21,23 @@ public class FabianController : MonoBehaviour
     {     
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
-       
-      //  myRb.MovePosition(moveDir * Time.deltaTime);
+        input.Normalize();
+        //myRb.MovePosition(moveDir * Time.deltaTime);
        
     }
 
     private void FixedUpdate() 
     {
-        myRb.velocity += new Vector3(input.x, myRb.velocity.y, input.y).normalized * moveSpeed * Time.fixedDeltaTime;        
+ 
+        myRb.velocity += new Vector3(input.x, 0, input.y) * moveSpeed * Time.fixedDeltaTime;       
+  
+        //myRb.AddForce(Vector3.down * 0.1f, ForceMode.Acceleration); 
+    }
+    
+    private void OnCollisionEnter(Collision other) {
+        //myRb.useGravity = true;
+        myRb.AddForce(Vector3.down * 3f, ForceMode.Impulse);
+        myRb.velocity = Vector3.zero;
     }
 
     
