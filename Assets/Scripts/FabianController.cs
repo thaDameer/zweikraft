@@ -44,7 +44,7 @@ public class FabianController : MonoBehaviour
  
         myRb.velocity += new Vector3(input.x, 0, input.y) * moveSpeed * Time.fixedDeltaTime;       
   
-        //myRb.AddForce(Vector3.down * 0.1f, ForceMode.Acceleration); 
+        myRb.AddForce(Vector3.down * 1f, ForceMode.Acceleration); 
     }
     
     private void OnCollisionEnter(Collision other) {
