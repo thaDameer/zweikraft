@@ -9,6 +9,9 @@ public class FabianController : MonoBehaviour
     Rigidbody myRb;
     Camera mainCam;
     Vector3 moveDir;
+    public Animator anim; 
+    float rotAngle;
+    float rotSpeed = 10f;
 
     private void Start()
     {
@@ -19,9 +22,19 @@ public class FabianController : MonoBehaviour
 
     void Update()
     {     
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
+        input.x = Input.GetAxis("Horizontal");
+        input.y = Input.GetAxis("Vertical");
         input.Normalize();
+        rotAngle = Mathf.Clamp(rotAngle, -45,45);
+            anim.SetFloat("Turning", Mathf.Lerp(0, input.x,1f));
+        if(input.x != 0)
+        {
+            if (input.x>0)
+            {
+               // this.transform.rotation = Vector3.RotateTowards
+            }
+        }
+
         //myRb.MovePosition(moveDir * Time.deltaTime);
        
     }
